@@ -1,5 +1,5 @@
-// import { IFile } from "../interfaces";
+import { IFile } from "../interfaces";
 
-// export const doesFileObjectExist = (arr: IFile[], id: string) => {
-//   return arr.some(obj => obj.id === id);
-// };
+export const doesFileObjectExist = (arr: IFile[], id: string) => {
+  return arr.some(obj => obj.id === id);
+};
