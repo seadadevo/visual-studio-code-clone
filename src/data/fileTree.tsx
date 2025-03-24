@@ -1,4 +1,4 @@
-// import { v4 as uuid } from "uuid";
+import { v4 as uuid } from "uuid";
 // import { IFile } from "../interfaces";
 
 import { IFile } from "../interfaces";
@@ -33,45 +33,54 @@ import { IFile } from "../interfaces";
 // }
 
 export const fileTree: IFile = {
+  id: uuid(),
   name: "VS Code",
   isFolder: true,
   children: [
     {
+      id: uuid(),
       name: "node_modules",
       isFolder: true,
       children: [
         {
+          id: uuid(),
           name: ".vite",
           isFolder: true,
           children: [
-            { name: "react.jsx", isFolder: false },
+            { id: uuid(), name: "react.jsx", isFolder: false },
           ],
         },
       ],
     },
     {
+      id: uuid(),
       name: "public",
       isFolder: true,
       children: [
         {
+          id: uuid(),
           name: "index.html",
           isFolder: false,
         },
       ],
     },
     {
+      id: uuid(),
       name: "src",
       isFolder: true,
       children: [
         {
+          id: uuid(),
           name: "components",
           isFolder: true,
-          children: [{name: "Button.tsx", isFolder: false}]
+          children: [{id: uuid(),name: "Button.tsx", isFolder: false}]
         },
       ],
     },
   ],
 };
+
+
 
 // const Button = ({}: IProps) => {
 //   return (

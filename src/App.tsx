@@ -8,7 +8,7 @@ import { fileTree } from "./data/fileTree";
 import FolderIcon from "./components/SVG/Folder";
 import FileIcon from "./components/SVG/File";
 import FileComponent from "./components/FileComponent";
-import RecursiveCom from "./components/RecursiveCom";
+import RecursiveCom from "./components/RecursiveComponent";
 
 
 const App = () => {
@@ -25,12 +25,15 @@ const App = () => {
     />
   </div> */}
   
-  console.log(fileTree.children);
+  const {openedFiles} = useSelector((state:RootState) => state.tree)
   return (
     <div className="m-5">
-    
-    <RecursiveCom fileTree={fileTree}/>
-    
+      <RecursiveCom fileTree ={fileTree}/>
+      <ul>
+        {openedFiles.map((file, idx) => (
+          <li key={idx}>{file.name}</li>
+        ))}
+      </ul>
     </div>
   );
 };
