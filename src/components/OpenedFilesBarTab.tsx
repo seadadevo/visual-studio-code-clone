@@ -1,9 +1,13 @@
-// import { useDispatch, useSelector } from "react-redux";
-// import { setClickedFileAction, setOpenedFilesAction, setTabIdToRemoveAction } from "../app/features/fileTreeSlice";
-// import { RootState } from "../app/store";
-// import { IFile } from "../interfaces";
-// import RenderFileIcon from "./RenderFileIcon";
-// import CloseIcon from "./SVG/CloseIcon";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setClickedFileAction,
+  setOpenedFilesAction,
+  setTabIdToRemoveAction,
+} from "../app/features/fileTreeSlice";
+import { RootState } from "../app/store";
+import { IFile } from "../interfaces";
+import RenderFileIcon from "./RenderFileIcon";
+import CloseIcon from "./SVG/CloseIcon";
 
 // interface IProps {
 //   file: IFile;
@@ -65,3 +69,27 @@
 // };
 
 // export default OpenedFilesBarTab;
+
+interface IProps {
+  file: IFile;
+}
+const OpenedFilesBarTab = ({ file }: IProps) => {
+  return (
+    <div
+      className={`max-w-screen-md flex items-center p-2 border-t-2 border-[#cf6ccf]`}
+    >
+      <RenderFileIcon filename={file.name} />
+      <span
+        className="cursor-pointer duration-300 flex justify-center
+     items-center w-fit mx-2 p-1 rounded-md"
+      >
+        {file.name}
+      </span>
+      <span className="cursor-pointer hover:bg-[#64646473] duration-300 flex justify-center
+       items-center w-fit mr-2 p-1 rounded-md">
+        <CloseIcon />
+      </span>
+    </div>
+  );
+};
+export default OpenedFilesBarTab;

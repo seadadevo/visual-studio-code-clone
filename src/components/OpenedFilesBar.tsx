@@ -1,8 +1,8 @@
-// import { useState } from "react";
-// import { useSelector } from "react-redux";
-// import { RootState } from "../app/store";
-// import OpenedFilesBarTab from "./OpenedFilesBarTab";
-// import ContextMenu from "./ui/ContextMenu";
+import { useState } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../app/store";
+import OpenedFilesBarTab from "./OpenedFilesBarTab";
+import ContextMenu from "./ui/ContextMenu";
 
 // const OpenedFilesBar = () => {
 //   const { openedFiles } = useSelector((state: RootState) => state.tree);
@@ -30,3 +30,18 @@
 // };
 
 // export default OpenedFilesBar;
+
+const OpenedFilesBar = () => {
+  const { openedFiles } = useSelector((state: RootState) => state.tree);
+  return (
+    <div>
+      <div className="flex items-center border-b-[1px] border-[#ffffff1f]">
+        {openedFiles.map((file) => (
+          <OpenedFilesBarTab key={file.id} file={file} />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default OpenedFilesBar;
