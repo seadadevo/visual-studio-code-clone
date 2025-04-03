@@ -2,6 +2,8 @@ import { useDispatch, useSelector } from "react-redux";
 import {
    
     setClickedFile,
+    setOpenedFiles,
+    setRemoveFile,
 } from "../app/features/fileTreeSlice";
 import { RootState } from "../app/store";
 import { IFile } from "../interfaces";
@@ -73,12 +75,27 @@ interface IProps {
   file: IFile;
 }
 const OpenedFilesBarTab = ({ file }: IProps) => {
-    const { clickedFile: {activeTabId} } = useSelector((state: RootState) => state.tree);
+    const { openedFiles ,clickedFile: {activeTabId} } = useSelector((state: RootState) => state.tree);
     const dispatch = useDispatch()
     // ! Handlers
     const onClick = () => {
         const { id, name, content} = file
         dispatch(setClickedFile({activeTabId: id,filename: name, fileContent: content}))
+    }
+    const onRemove = (selectedId: string) => {
+     const filtered = openedFiles.filter( file => file.id !== selectedId)
+     const lastTap =  filtered[filtered.length - 1]
+    //  const {id, content, name} = lastTap;
+    dispatch(setOpenedFiles(filtered))
+     if(lastTap) {
+       dispatch(setClickedFile({ activeTabId: lastTap.id, fileContent:lastTap.content, filename: lastTap.name}))  
+      } else {
+        dispatch(setOpenedFiles([]))
+      dispatch(setClickedFile({ activeTabId: null, fileContent:"", filename: ""}))  
+      return;
+    }
+   
+     
     }
   return (
     <div
@@ -96,7 +113,11 @@ const OpenedFilesBarTab = ({ file }: IProps) => {
         {file.name}
       </span>
       <span className="cursor-pointer hover:bg-[#64646473] duration-300 flex justify-center
-       items-center w-fit mr-2 p-1 rounded-md">
+       items-center w-fit mr-2 p-1 rounded-md"
+       onClick={(e => {
+        e.stopPropagation();
+        onRemove(file.id)
+       })}>
         <CloseIcon />
       </span>
     </div>
