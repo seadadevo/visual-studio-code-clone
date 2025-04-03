@@ -30,10 +30,12 @@ const App = () => {
   return (
     <div>
       <div className="flex h-screen">
-        <div className="w-64 border-r border-white">
+        
+        <ResizablePanel leftPanel ={
+          <div className="w-64 ">
           <RecursiveCom fileTree={fileTree} />
         </div>
-        <OpenedFilesBar />
+        } rightPanel = {<OpenedFilesBar/>} showLeftPanel/>
       </div>
     </div>
   );

@@ -85,10 +85,10 @@ const OpenedFilesBarTab = ({ file }: IProps) => {
     const onRemove = (selectedId: string) => {
      const filtered = openedFiles.filter( file => file.id !== selectedId)
      const lastTap =  filtered[filtered.length - 1]
-    //  const {id, content, name} = lastTap;
-    dispatch(setOpenedFiles(filtered))
      if(lastTap) {
-       dispatch(setClickedFile({ activeTabId: lastTap.id, fileContent:lastTap.content, filename: lastTap.name}))  
+       const {id, content, name} = lastTap;
+       dispatch(setOpenedFiles(filtered))
+       dispatch(setClickedFile({ activeTabId: id, fileContent:content, filename: name}))  
       } else {
         dispatch(setOpenedFiles([]))
       dispatch(setClickedFile({ activeTabId: null, fileContent:"", filename: ""}))  
