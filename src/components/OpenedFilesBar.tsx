@@ -32,7 +32,7 @@ import ContextMenu from "./ui/ContextMenu";
 // export default OpenedFilesBar;
 
 const OpenedFilesBar = () => {
-  const { openedFiles } = useSelector((state: RootState) => state.tree);
+  const { openedFiles, clickedFile } = useSelector((state: RootState) => state.tree);
   return (
     <div>
       <div className="flex items-center border-b-[1px] border-[#ffffff1f]">
@@ -40,6 +40,7 @@ const OpenedFilesBar = () => {
           <OpenedFilesBarTab key={file.id} file={file} />
         ))}
       </div>
+      {clickedFile.fileContent}
     </div>
   );
 };
