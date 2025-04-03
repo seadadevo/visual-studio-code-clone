@@ -1,5 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import {
+    setActiveTabId,
+    setClickedFile,
   setClickedFileAction,
   setOpenedFilesAction,
   setTabIdToRemoveAction,
@@ -74,9 +76,24 @@ interface IProps {
   file: IFile;
 }
 const OpenedFilesBarTab = ({ file }: IProps) => {
+    const { activeTabId } = useSelector((state: RootState) => state.tree);
+    const dispatch = useDispatch()
+    // ! Handlers
+    const onClick = () => {
+        const { id, name, content} = file
+        dispatch(setClickedFile({filename: name, fileContent: content}))
+        dispatch(setActiveTabId(id))
+        console.log(activeTabId);
+        console.log(name);
+        
+    }
   return (
     <div
-      className={`max-w-screen-md flex items-center p-2 border-t-2 border-[#cf6ccf]`}
+    className={`max-w-screen-md flex items-center p-2 border-t-4 transition-all duration-300 
+      ${file.id === activeTabId ? "border-[#cf6ccf] " : "border-transparent"}
+      rounded-md cursor-pointer hover:bg-[#565656]`}
+     
+      onClick={onClick}
     >
       <RenderFileIcon filename={file.name} />
       <span
