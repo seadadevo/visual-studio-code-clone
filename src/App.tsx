@@ -9,11 +9,12 @@ import FolderIcon from "./components/SVG/Folder";
 import FileIcon from "./components/SVG/File";
 import FileComponent from "./components/FileComponent";
 import RecursiveCom from "./components/RecursiveComponent";
-
+import OpenedFilesBar from "./components/OpenedFilesBar";
 
 const App = () => {
   // const { openedFiles } = useSelector(({ tree }: RootState) => tree);
-  {/* <div className="flex h-screen">
+  {
+    /* <div className="flex h-screen">
     <ResizablePanel
       showLeftPanel
       leftPanel={
@@ -23,17 +24,17 @@ const App = () => {
       }
       rightPanel={openedFiles.length ? <Preview /> : <WelcomeTab />}
     />
-  </div> */}
-  
-  const {openedFiles} = useSelector((state:RootState) => state.tree)
+  </div> */
+  }
+
   return (
-    <div className="m-5">
-      <RecursiveCom fileTree ={fileTree}/>
-      <ul>
-        {openedFiles.map((file, idx) => (
-          <li key={idx}>{file.name}</li>
-        ))}
-      </ul>
+    <div>
+      <div className="flex h-screen">
+        <div className="w-64 border-r border-white">
+          <RecursiveCom fileTree={fileTree} />
+        </div>
+        <OpenedFilesBar />
+      </div>
     </div>
   );
 };

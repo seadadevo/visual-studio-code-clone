@@ -46,9 +46,7 @@ export const fileTree: IFile = {
           id: uuid(),
           name: ".vite",
           isFolder: true,
-          children: [
-            { id: uuid(), name: "react.jsx", isFolder: false },
-          ],
+          children: [{ id: uuid(), name: "react.jsx", isFolder: false }],
         },
       ],
     },
@@ -73,14 +71,25 @@ export const fileTree: IFile = {
           id: uuid(),
           name: "components",
           isFolder: true,
-          children: [{id: uuid(),name: "Button.tsx", isFolder: false}]
+          children: [
+            {
+              id: uuid(),
+              name: "Button.tsx",
+              isFolder: false,
+              content: "Button Component Content",
+            },
+            {
+              id: uuid(),
+              name: "Button.tsx",
+              isFolder: false,
+              content: "Button Component Content2",
+            },
+          ],
         },
       ],
     },
   ],
 };
-
-
 
 // const Button = ({}: IProps) => {
 //   return (
