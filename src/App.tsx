@@ -27,15 +27,17 @@ const App = () => {
   </div> */
   }
 
+  const { openedFiles } = useSelector(({ tree }: RootState) => tree);
+
   return (
     <div>
       <div className="flex h-screen">
         
         <ResizablePanel leftPanel ={
-          <div className="w-64 ">
+          <div className="w-64 p-2">
           <RecursiveCom fileTree={fileTree} />
         </div>
-        } rightPanel = {<OpenedFilesBar/>} showLeftPanel/>
+        } rightPanel = {openedFiles.length ? <Preview/> : <WelcomeTab/>} showLeftPanel/>
       </div>
     </div>
   );

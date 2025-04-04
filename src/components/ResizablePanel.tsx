@@ -22,7 +22,7 @@ const ResizablePanel = ({
       {showLeftPanel && (
         <>
           <Panel defaultSize={defaultLayout[0]} collapsible={true}>{leftPanel}</Panel>
-          <PanelResizeHandle className="border-r border-white" />
+          <PanelResizeHandle className="border-r-4 border-white" />
         </>
       )}
 
